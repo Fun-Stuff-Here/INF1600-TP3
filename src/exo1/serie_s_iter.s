@@ -5,8 +5,7 @@ serie_s_iter:
    movl   %esp, %ebp
    
    # completer
-   # ici
-   # making sure pull request works well
+
    
 N0:
    movl   $1, %eax
