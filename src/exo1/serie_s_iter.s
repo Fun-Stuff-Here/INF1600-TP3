@@ -6,6 +6,7 @@ serie_s_iter:
    
    # completer
    # ici
+   # making sure pull request works well
    
 N0:
    movl   $1, %eax
