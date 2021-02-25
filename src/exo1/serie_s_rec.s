@@ -5,6 +5,7 @@ serie_s_rec:
    movl   %esp, %ebp
    
    # completer
+   # init pull request
    
 N0:
    movl   $1, %eax
