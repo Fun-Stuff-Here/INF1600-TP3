@@ -5,6 +5,7 @@ serie_s_iter:
    movl   %esp, %ebp
    
    # completer
+   # ici
    
 N0:
    movl   $1, %eax
