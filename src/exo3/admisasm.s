@@ -5,7 +5,7 @@
 .globl	_ZN8Etudiant8admisasmEv
 
 _ZN8Etudiant8admisasmEv:
-        push %ebp      /* save old base pointer */
+        push %ebp      /* save old base pointer */ 
         mov %esp, %ebp /* set ebp to current esp */
         
         / * Programme ici */
