@@ -17,9 +17,13 @@ _ZN18EtudiantEnMaitrise8admisasmEv:
 	fcomi %st(1)				# if (moyenne >=10)
 	ja REFUS
 
-	# movl (%ebx), %ecx 
-	# cmp $10, %ecx	 			# if ((note_memoire >=10))
-	# jb REFUS
+
+	movl $36, %eax				# size of etudiant
+	fld (%ebx,%eax,4)			# load attribut de EtudiantMaitrise
+	fcomi %st(1)	 				# if ((note_memoire >=10))
+	jb REFUS
+
+
 
 ADMIS:
 	movl $1, %eax				# return 1
