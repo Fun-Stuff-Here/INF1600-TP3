@@ -1,42 +1,41 @@
 .text
 .globl serie_s_iter
+
 serie_s_iter:
-	pushl  %ebp
-	movl   %esp, %ebp
-	pushl %ebx
+	# Prologue
+	pushl  	%ebp
+	movl   	%esp, %ebp
+	pushl 	%ebx
 
-	# completer
+	# premieres 2 conditions
+	movl 	0x8(%ebp), %ecx	# fetch le parametre 
+	cmp 	$0, %ecx		# if (n == 0)  
+	je 		N0
+	cmp 	$1, %ecx		# if (n == 1) 
+	je 		N1
 
-	movl 8(%ebp), %ecx			# fetch le parametre 
+	# init
+	movl 	$0, %eax		# t
+	movl 	$1, %ebx		# p = 1
+	movl 	$2, %edx		# c = 2
+	dec 	%ecx			# met le bon nombre d'iteration de la loop
 
-	cmp $0, %ecx					# if n ==1 
-	je N0
+FOR:
+	movl 	%edx, %eax		# t = c
+	inc 	%edx			# c = 1 + ...
+	addl 	%ebx, %edx		# c + p
+	movl 	%eax, %ebx		# p = t
+	loop 	FOR				# loopy loop
+	
+	movl 	%edx, %eax		# return c
+	jmp 	Retour			
 
-	cmp $1, %ecx					# if n ==1 
-	je N1
-
-	subl $1, %ecx					# met le bon nombre d'iteration de la loop
-
-	movl $0, %eax					# t;
-	movl $1, %ebx					# p=1;
-	movl $2, %edx					# c=2;
-
-FORLOOP:
-	movl %edx, %eax				# t=c;
-	addl $1, %edx					# c= 1 + ...
-	addl %ebx, %edx				# c+p;
-	movl %eax, %ebx				# p=t;
-	loop FORLOOP					# loopy loop
-	movl %edx, %eax				# return c
-	jmp Retour						# //
-
-	# code founie
 N0:
-	movl   $1, %eax
+	movl   $1, %eax			# return 1
 	jmp    Retour     
 
 N1:
-	movl   $2, %eax
+	movl   $2, %eax			# return 2
 	jmp    Retour   
 
 Retour:   
